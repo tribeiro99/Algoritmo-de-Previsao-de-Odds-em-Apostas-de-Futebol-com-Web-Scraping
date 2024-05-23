@@ -1,4 +1,5 @@
 import importlib
+import requests
 
 def get_url():
     url = input("Por favor coloque o URL do jogo: ")
@@ -7,33 +8,41 @@ def get_url():
 url = get_url()
 
 project_files = [
+    "Abrir marcador CASA",
+    "Abrir marcador Visitante",
     "Confronto direto",
-    "Tabela classificativa AWAY",
+    "Resultado int final equipa casa",
+    "Resultado int final equipa visitante",
+    "Ultimos10jogosdaequipadacasa",
     "Ultimos10jogosdaequipavisitante",
-]
+    "GOLOS AMBAS EQUIPAS",
+    "Tabela classificativa",
+    "tabela classificao casa",
+    "TABELA CLASSIFICATIVA HOME SEM SELENIUM",
+    "tabela classfica fora",
+    "Tabela classificativa AWAY",
+    "MINUTOS DO GOLO MARCADO ",
+    "MINUTOS DO  GOLO SOFRIDO CASA",
+    "MINUTOS DO GOLO SOFRIDO VISITANTE",
 
-weights = [0.6, 0.2, 0.2]
+]
 
 odd_results = []
 
-for project_file, weight in zip(project_files, weights):
+for project_file in project_files:
     try:
         module = importlib.import_module(project_file)
         odd_result = module.process_data(url)
         if odd_result is not None:
-            weighted_odd = odd_result * weight
-            odd_results.append(weighted_odd)
-            print(f"ODD AJUSTADA ({project_file}): {weighted_odd:.4f}")
-        else:
-            print(f"No valid odds found for {project_file}.")
+            odd_results.append(odd_result)
     except ImportError:
         print(f"Unable to import {project_file}. Make sure the file exists and contains the 'process_data' function.")
     print("\n" + "=" * 40 + "\n")
 
-# Calculate weighted average odds
+# Calculate average odds
 if odd_results:
     average_odd = sum(odd_results) / len(odd_results)
 
-    print(f"ODD VISITANTES GANHAR AJUSTADA: {average_odd:.4f}")
+    print(f"ODD CASA GANHAR AJUSTADA : {average_odd:.4f}")
 else:
     print("No valid odds found for the specified projects.")
