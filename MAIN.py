@@ -1,11 +1,14 @@
 import importlib
 import requests
 
+
 def get_url():
     url = input("Por favor coloque o URL do jogo: ")
     return url
 
+
 url = get_url()
+
 
 project_files = [
     "Abrir marcador CASA",
@@ -25,23 +28,15 @@ project_files = [
     "MINUTOS DO  GOLO SOFRIDO CASA",
     "MINUTOS DO GOLO SOFRIDO VISITANTE",
 
+
+
 ]
 
-odd_results = []
 
 for project_file in project_files:
     try:
         module = importlib.import_module(project_file)
-        odd_result = module.process_data(url)
-        if odd_result is not None:
-            odd_results.append(odd_result)
+        module.process_data(url)
     except ImportError:
         print(f"Unable to import {project_file}. Make sure the file exists and contains the 'process_data' function.")
     print("\n" + "=" * 40 + "\n")
-
-if odd_results:
-    average_odd = sum(odd_results) / len(odd_results)
-
-    print(f"ODD CASA GANHAR AJUSTADA : {average_odd:.4f}")
-else:
-    print("No valid odds found for the specified projects.")
