@@ -85,7 +85,6 @@ def process_data(url):
                             print(
                                 f"Position: {position}, Team: {team}, Points: {points}, Matches Played: {matches_played}, Wins: {wins}, Draws: {draws}, Losses: {losses}, Goals: {goals}")
 
-                            # Calculate odds for the target team
                             odds = calculate_odds(wins, matches_played)
                             if odds is not None:
                                 print(f"Odds for HOME TEAM to win: {odds:.4f},{team}")
