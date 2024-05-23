@@ -39,7 +39,6 @@ for project_file in project_files:
         print(f"Unable to import {project_file}. Make sure the file exists and contains the 'process_data' function.")
     print("\n" + "=" * 40 + "\n")
 
-# Calculate average odds
 if odd_results:
     average_odd = sum(odd_results) / len(odd_results)
 
