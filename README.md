@@ -3,4 +3,6 @@ Este projeto não está acabado, existe a necessidade de atribuição de peso de
 A intenção do projeto é atribuir uma odd final para cada dado, com valores( pesos) personalizados.
        
 COM GUI
+
+
 COM .DEB
