@@ -40,7 +40,7 @@ def extract_home_goal_data(soup, team_name):
         columns = rows[i].find_all('td')
         goals_suffered = columns[1].get_text(strip=True)
 
-        # Skip invalid values
+        
         if goals_suffered.isdigit():
             goal_data.append((goals_suffered, team_name))
             goals_suffered_in_ranges.append(int(goals_suffered))
